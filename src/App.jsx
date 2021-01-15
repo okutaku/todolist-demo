@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import "./index.css";
 
 export const App = () => {
+  const [todoLine, setTodoLine] = useState('');
+
   const [incompleteTodos, setIncompleteTodos] = useState([
     "1項目目",
     "2項目目"
@@ -10,10 +12,12 @@ export const App = () => {
   const [completeTodos, setCompleteTodos] = useState([
     "３項目目",
   ]);
+
+  const onChangeTodoLine = e => setTodoLine(e.target.value);
   return (
     <div className="app">
       <div className="input-area">
-        <input placeholder="やるべきこと"/>
+        <input placeholder="やるべきこと" value={todoLine} onChange={onChangeTodoLine}/>
         <button>追加</button>
       </div>
       <div className="incomplete-area">
