@@ -13,12 +13,21 @@ export const App = () => {
     "３項目目",
   ]);
 
+  const onClickAdd = () => {
+    if (todoLine === "") return(
+      alert("「やるべきこと」に文字を入力してください")
+    );
+    const newTodos = [...incompleteTodos, todoLine];
+    setIncompleteTodos(newTodos);
+    setTodoLine("");
+  }
+
   const onChangeTodoLine = e => setTodoLine(e.target.value);
   return (
     <div className="app">
       <div className="input-area">
         <input placeholder="やるべきこと" value={todoLine} onChange={onChangeTodoLine}/>
-        <button>追加</button>
+        <button onClick={onClickAdd}>追加</button>
       </div>
       <div className="incomplete-area">
         <p className="title">未完了のTODO</p>
