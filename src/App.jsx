@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import "./index.css";
+import { InputTodo } from './Components/InputTodo'
 
 export const App = () => {
   //初期の要素
@@ -45,10 +46,11 @@ export const App = () => {
   const onChangeTodoLine = e => setTodoLine(e.target.value);
   return (
     <div className="app">
-      <div className="input-area">
-        <input placeholder="やるべきこと" value={todoLine} onChange={onChangeTodoLine}/>
-        <button onClick={onClickAdd}>追加</button>
-      </div>
+      <InputTodo
+        todoLine={todoLine}
+        onChange={onChangeTodoLine}
+        onClick={onClickAdd}
+        />
       <div className="incomplete-area">
         <p className="title">未完了のTODO</p>
         <ul>
