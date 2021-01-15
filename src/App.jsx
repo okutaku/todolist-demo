@@ -2,17 +2,12 @@ import React, { useState } from 'react';
 import "./index.css";
 
 export const App = () => {
+  //初期の要素
   const [todoLine, setTodoLine] = useState('');
+  const [incompleteTodos, setIncompleteTodos] = useState([]);
+  const [completeTodos, setCompleteTodos] = useState([]);
 
-  const [incompleteTodos, setIncompleteTodos] = useState([
-    "1項目目",
-    "2項目目"
-  ]);
-
-  const [completeTodos, setCompleteTodos] = useState([
-    "３項目目",
-  ]);
-
+  //クリック機能
   const onClickAdd = () => {
     if (todoLine === "") return(
       alert("「やるべきこと」に文字を入力してください")
@@ -37,6 +32,16 @@ export const App = () => {
     setCompleteTodos(newCompleteTodos);
   }
 
+  const onClickBack = (index) => {
+    const newCompleteTodos = [...completeTodos];
+    newCompleteTodos.splice(index, 1);
+
+    const newIncompleteTodos = [...incompleteTodos, completeTodos[index]];
+    setCompleteTodos(newCompleteTodos);
+    setIncompleteTodos(newIncompleteTodos);
+  }
+
+  //JSX
   const onChangeTodoLine = e => setTodoLine(e.target.value);
   return (
     <div className="app">
@@ -61,11 +66,11 @@ export const App = () => {
       <div className="complete-area">
         <p className="title">完了のTODO</p>
         <ul>
-        {completeTodos.map((todo) => {
+        {completeTodos.map((todo, index) => {
             return(
               <div key={todo} className="list">
                 <li>{todo}</li>
-                <button>戻す</button>
+                <button onClick={() => onClickBack(index)}>戻す</button>
               </div>
             );
           })}
