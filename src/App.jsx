@@ -52,7 +52,7 @@ export const App = () => {
         todoLine={todoLine}
         onChange={onChangeTodoLine}
         onClick={onClickAdd}
-        disabled={incompleteTodos.length >= 5}
+        disabled={incompleteTodos.length >= 6}
         />
       {incompleteTodos.length >= 5 && (
         <p>
